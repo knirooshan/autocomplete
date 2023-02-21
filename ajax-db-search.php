@@ -1,18 +1,20 @@
 <?php
 
-include('gfg.php'); 
+require_once "db.php"; 
 
-$searchTerm = $_POST['term'];
-$sql = "SELECT ownername FROM passwords WHERE ownername LIKE '%".$searchTerm."%'"; 
-$result = $conn->query($sql); 
-if ($result->num_rows > 0) {
-  $tutorialData = array(); 
-  while($row = $result->fetch_assoc()) {
-
-   $data['id']    = $row['id']; 
-   $data['value'] = $row['ownername'];
-   array_push($tutorialData, $data);
-} 
+if (isset($_GET['term'])) {
+     
+   $query = "SELECT ownername FROM passwords WHERE ownername LIKE '{$_GET['term']}%'";
+   $result = mysqli_query($conn, $query);
+ 
+    if (mysqli_num_rows($result) > 0) {
+     while ($user = mysqli_fetch_array($result)) {
+      $res[] = $user['ownername'];
+     }
+    } else {
+      $res = array();
+    }
+    //return json res
+    echo json_encode($res);
 }
- echo json_encode($tutorialData);
 ?>
