@@ -192,11 +192,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
                         <div class="mb-3 <?php echo (!empty($ownername_err)) ? 'has-error' : ''; ?>">
                             <label class="form-label" for="ownername">Owner Name</label>
-                            
-
-                            <div class="autocomplete-container">
-                            <input type="text" name="term" id="term" placeholder="Enter Owner Name" class="form-control">  
-                            </div>  
+                            <div class="container">
+                                <div class="row">
+                                    <input type="text" name="term" id="term" placeholder="Enter Owner Name" class="form-control">  
+                                 </div>
+                            </div>
                                 <span class="text-danger"><?php echo $ownername_err; ?></span>
                         </div>
 
